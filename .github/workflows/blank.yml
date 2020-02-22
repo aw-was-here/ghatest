@@ -9,10 +9,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: ps
-      run: ps -ef
     - name: ls
       run: ls -alR
     - name: df
-      run: df -h      
+      run: df -h
+    - name: pwd
+      run: pwd      
     
