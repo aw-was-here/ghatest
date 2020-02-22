@@ -10,10 +10,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: ls
-      run: ls -alR
+      run: ls -alR > output
     - name: df
       run: df -h
     - name: pwd
-      run: pwd      
+      run: pwd
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: output.txt
+        path: output         
     - name: env
       run: env
