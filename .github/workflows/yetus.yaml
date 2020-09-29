@@ -1,0 +1,28 @@
+---
+name: Apache Yetus
+
+on: [push, pull_request]  # yamllint disable-line rule:truthy
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          path: src
+          fetch-depth: 0
+      - name: Apache Yetus test-patch
+        uses: apache/yetus-test-patch-action@v1
+        with:
+          basedir: ./src
+          patchdir: ./out
+          buildtool: nobuild
+      - name: Artifact output
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: apacheyetuspatchdir
+          path: ${{ github.workspace }}/out
