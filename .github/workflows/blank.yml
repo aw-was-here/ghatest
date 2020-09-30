@@ -1,6 +1,8 @@
+---
+
 name: CI
 
-on: [push]
+on: [push]  # yamllint disable-line rule:truthy
 
 jobs:
   build:
@@ -8,20 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: curl
-      run: >
-        curl -I
-        -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}'
-        --url https://api.github.com/user
-    - name: df
-      run: df -h
-    - name: pwd
-      run: pwd
-    - name: Upload math result for job 1
-      uses: actions/upload-artifact@v1
-      with:
-        name: output.txt
-        path: output
-    - name: env
-      run: env
+      - uses: actions/checkout@v2
+      - name: curl
+        run: >
+          curl -I
+          -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}'
+          --url https://api.github.com/user
+      - name: df
+        run: df -h
+      - name: pwd
+        run: pwd
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v1
+        with:
+          name: output.txt
+          path: output
+      - name: env
+        run: env
