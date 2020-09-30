@@ -8,17 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: ls
-      run: ls -alR > output
-    - name: df
-      run: df -h
-    - name: pwd
-      run: pwd
-    - name: Upload math result for job 1
-      uses: actions/upload-artifact@v1
-      with:
-        name: output.txt
-        path: output         
-    - name: env
-      run: env
+      - uses: actions/checkout@v2
+      - name: env
+        run: env
+      - name: test curl
+        run: curl -I -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' --url https://api.github.com/user
